@@ -1,10 +1,12 @@
 from hashlib import md5
 from django.utils.encoding  import smart_unicode
+from django.conf import settings
 
+MAX_KEY_LENGTH = getattr(settings, 'CACHE_UTILS_MAX_KEY_LENGTH', 240)
 CONTROL_CHARACTERS = set([chr(i) for i in range(0,33)])
 CONTROL_CHARACTERS.add(chr(127))
 
-def sanitize_memcached_key(key, max_length=250):
+def sanitize_memcached_key(key, max_length=MAX_KEY_LENGTH):
     """ Removes control characters and ensures that key will
         not hit the memcached key length limit by replacing
         the key tail with md5 hash if key is too long.
