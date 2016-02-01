@@ -9,7 +9,7 @@ import uuid
 import logging
 import sys
 import time
-from django.core.cache.backends.memcached import CacheClass as MemcachedCacheClass
+from django.core.cache.backends.memcached import MemcachedCache as MemcachedCacheClass
 from django.conf import settings
 from django.utils.encoding import smart_str
 
